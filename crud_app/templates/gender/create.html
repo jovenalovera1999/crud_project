@@ -1,0 +1,29 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+
+{% include 'include/nav.html' %}
+<main id="main">
+    <div class="container">
+        <form action="{% url 'gender_store' %}" method="post">
+            {% csrf_token %}
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-text">ADD GENDER</h5>
+                    <div class="row">
+                        <div class="col-sm-3 mx-auto">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="{{ form.gender.id_for_label }}" name="{{ form.gender.name }}" value="{% if form.gender.value %}{{ form.gender.value }}{% endif %}" />
+                            </div>
+                            <button type="submit" class="btn btn-success w-100 mb-3">SAVE</button>
+                            <a href="{% url 'gender_index' %}" class="btn btn-secondary w-100">BACK</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+{% include 'include/button_back_to_top.html' %}
+
+{% endblock content %}
